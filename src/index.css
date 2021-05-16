@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #7A8291;
+}
+
+body #root {
+  position: relative;
+}
+
+button {
+  outline: none !important;
+}
