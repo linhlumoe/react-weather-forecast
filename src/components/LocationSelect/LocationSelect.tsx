@@ -7,15 +7,20 @@ import { fetchLocations } from '../../services/weather'
 import { fetchWeather } from '../../store/weather/actions'
 
 import AsyncSearchSelect, { SelectOption } from '../AsyncSearchSelect'
+import { useGlobalLoading } from '../GlobalLoading'
 
 const LocationSelect: FC = () => {
   const dispatch = useDispatch()
+  const { startGlobalLoading, endGlobalLoading } = useGlobalLoading()
+
+  const [currentLatLong, setCurrentLatLong] = useState<GeolocationPosition>()
   const [defaultLocation, setDefaultLocation] = useState<SelectOption>()
 
-  const getDefaultLocation = useCallback(async () => {
+  const getDefaultLocation = useCallback(async (position: GeolocationPosition) => {
     try {
       const res = await fetchLocations({
-        query: 'Ho Chi Minh City'
+        lattlong: [position.coords.latitude, position.coords.longitude].join(','),
+        query: ''
       })
       if (res.length) {
         const item = { id: res[0].woeid, label: res[0].title }
@@ -39,8 +44,22 @@ const LocationSelect: FC = () => {
   }, [])
 
   useEffect(() => {
-    getDefaultLocation()
+    if (navigator?.geolocation) {
+      startGlobalLoading()
+      navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+        setCurrentLatLong(position)
+        endGlobalLoading()
+      }, () => {
+        endGlobalLoading()
+      })
+    }
   }, [])
+
+  useEffect(() => {
+    if (currentLatLong) {
+      getDefaultLocation(currentLatLong)
+    }
+  }, [currentLatLong])
 
   return (
     <AsyncSearchSelect

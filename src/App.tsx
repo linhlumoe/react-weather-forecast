@@ -6,7 +6,6 @@ import { LightTheme, BaseProvider } from 'baseui'
 
 import WeatherForecast from './pages/WeatherForecast'
 
-import * as routes from './routes'
 import { withGlobalLoading } from './components/GlobalLoading'
 
 const engine = new Styletron()

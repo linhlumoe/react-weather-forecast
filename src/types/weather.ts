@@ -5,6 +5,7 @@ export interface WeatherStore {
 
 export interface LocationFilterParams {
   query: string
+  lattlong?: string
 }
 
 export enum LocationType {

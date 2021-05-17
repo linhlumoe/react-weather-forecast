@@ -1,17 +1,16 @@
-# Getting Started with Create React App
+# Weather Forecast Assignment
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 UI Library: BaseWeb UI
 
-## Available Scripts
-
-In the project directory, you can run:
-
+In the project directory, you can run
 ### `yarn start`
 
 Install, build the React app then run the node server which serves the built static files
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Other available Scripts
 
 ### `yarn start:client`
 

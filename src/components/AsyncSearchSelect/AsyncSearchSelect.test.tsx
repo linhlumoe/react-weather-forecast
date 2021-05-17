@@ -1,12 +1,6 @@
-import { shallow, mount } from 'enzyme'
-import { H5 } from 'baseui/typography'
-import { render, screen } from '@testing-library/react'
+import { shallow } from 'enzyme'
 import AsyncSearchSelect from './AsyncSearchSelect'
-import { SelectOption } from './types'
 import { OnChangeParams, Select } from 'baseui/select'
-import { Input } from 'baseui/input'
-import { BaseProvider, LightTheme } from 'baseui'
-import { ChangeEvent } from 'react'
 
 describe('Test AsyncSearchSelect', () => {
   const fetchItemsMock = jest.fn().mockResolvedValue([])
@@ -35,4 +29,3 @@ describe('Test AsyncSearchSelect', () => {
     expect(onSelectedItemChangeMock).toBeCalled()
   })
 })
-

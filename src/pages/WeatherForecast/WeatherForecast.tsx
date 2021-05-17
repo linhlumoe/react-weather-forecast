@@ -1,5 +1,5 @@
-import { Block } from 'baseui/block'
 import { FC, memo } from 'react'
+import { Block } from 'baseui/block'
 
 import { H5 } from 'baseui/typography'
 

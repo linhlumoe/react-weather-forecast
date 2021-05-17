@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, ChangeEvent, useMemo, useEffect } from 'react'
+import { FC, useState, useCallback, ChangeEvent, useEffect } from 'react'
 import { OnChangeParams, Select, Value } from 'baseui/select'
 import debounce from 'lodash/debounce'
 
@@ -30,10 +30,12 @@ const AsyncSearchSelect: FC<AsyncSearchSelectProps> = ({ fetchItems, onSelectedI
   }, [])
 
   const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    handleSearch(event.target.value)
+    if (event.target?.value) {
+      handleSearch(event.target.value)
+    }
   }, [])
 
-  const debouncedHandleInputChange = useMemo(() => debounce(handleInputChange, 400), [handleInputChange])
+  const debouncedHandleInputChange = debounce(handleInputChange, 400)
 
   const onChange = useCallback(async (params: OnChangeParams) => {
     setValue(params.value)

@@ -6,7 +6,7 @@ import { toastMessage } from '../../utils/toast'
 
 import * as actions from './actions'
 
-function* fetchWeatherHandler({ payload }: actions.FetchWeather ) {
+export function* fetchWeatherHandler({ payload }: actions.FetchWeather ) {
   try {
     if (payload !== 0) {
       const res: LocationDetail = yield call(weatherService.fetchWeatherForecastByLocationId, payload)
@@ -24,6 +24,6 @@ function* watchFetchingWeather() {
   yield takeLatest(actions.ACTION_TYPES.FETCH_WEATHER, fetchWeatherHandler)
 }
 
-export default function* generalSagas() {
+export default function* weatherSagas() {
   yield all([watchFetchingWeather()])
 }
