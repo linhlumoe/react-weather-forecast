@@ -19,7 +19,9 @@ app.get('/', function (req, res) {
 
 app.get('/api/location/search', async function (req, res, next) {
   try {
-    const response = await axios.get(`https://www.metaweather.com/api/location/search?query=${req.query.query}`)
+    const response = await axios.get(`https://www.metaweather.com/api/location/search`, {
+      params: req.query
+    })
     res.json(response.data)
   } catch (err) {
     next(err)

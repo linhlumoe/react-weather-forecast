@@ -18,6 +18,7 @@ const LocationSelect: FC = () => {
 
   const getDefaultLocation = useCallback(async (position: GeolocationPosition) => {
     try {
+      startGlobalLoading()
       const res = await fetchLocations({
         lattlong: [position.coords.latitude, position.coords.longitude].join(','),
         query: ''
@@ -29,6 +30,8 @@ const LocationSelect: FC = () => {
       }
     } catch (error) {
       toastMessage.negative(error.message)
+    } finally {
+      endGlobalLoading()
     }
   }, [])
 
