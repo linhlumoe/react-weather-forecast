@@ -3,8 +3,8 @@ import toNumber from 'lodash/toNumber'
 import { useDispatch } from 'react-redux'
 
 import { toastMessage } from '../../utils/toast'
-import { fetchLocations } from '../../services/weather'
-import { fetchWeather } from '../../store/weather/actions'
+import * as weatherService from '../../services/weather'
+import * as actions from '../../store/weather/actions'
 
 import AsyncSearchSelect, { SelectOption } from '../AsyncSearchSelect'
 import { useGlobalLoading } from '../GlobalLoading'
@@ -19,7 +19,7 @@ const LocationSelect: FC = () => {
   const getDefaultLocation = useCallback(async (position: GeolocationPosition) => {
     try {
       startGlobalLoading()
-      const res = await fetchLocations({
+      const res = await weatherService.fetchLocations({
         lattlong: [position.coords.latitude, position.coords.longitude].join(','),
         query: ''
       })
@@ -36,14 +36,14 @@ const LocationSelect: FC = () => {
   }, [])
 
   const getLocations = useCallback(async (term: string) => {
-    const res = await fetchLocations({
+    const res = await weatherService.fetchLocations({
       query: term
     })
-    return res.map(item => ({ id: item.woeid, label: item.title }))
+    return res?.map(item => ({ id: item.woeid, label: item.title }))
   }, [])
 
   const onLocationSelect = useCallback((item: SelectOption | null) => {
-    dispatch(fetchWeather(item?.id ? toNumber(item?.id) : 0))
+    dispatch(actions.fetchWeather(item?.id ? toNumber(item?.id) : 0))
   }, [])
 
   useEffect(() => {

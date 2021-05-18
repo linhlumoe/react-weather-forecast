@@ -7,7 +7,7 @@ export async function fetchLocations(params: LocationFilterParams) {
     params
   })
 
-  return res.data
+  return res?.data
 }
 
 export async function fetchWeatherForecastByLocationId(woeid: number) {

@@ -5,7 +5,5 @@ const DEFAULT_OPTIONS: ToastProps = {
 }
 
 export const toastMessage = {
-  positive: (message: string, options?: ToastProps) => toaster.positive(message, { ...DEFAULT_OPTIONS, ...options }),
-  negative: (message: string, options?: ToastProps) => toaster.negative(message, { ...DEFAULT_OPTIONS, ...options }),
-  warning: (message: string, options?: ToastProps) => toaster.warning(message, { ...DEFAULT_OPTIONS, ...options }),
+  negative: (message: string, options?: ToastProps) => toaster.negative(message, { ...DEFAULT_OPTIONS, ...options })
 }

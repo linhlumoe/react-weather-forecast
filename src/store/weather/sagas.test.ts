@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { runSaga } from 'redux-saga'
 import * as weatherService from '../../services/weather'
 import { LocationDetail } from '../../types'
 import { toastMessage } from '../../utils/toast'
 import { fetchWeatherHandler } from './sagas'
 import * as actions from './actions'
+
 const mockData: LocationDetail = {
   consolidated_weather: [
     {
